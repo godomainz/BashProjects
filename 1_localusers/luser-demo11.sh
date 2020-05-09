@@ -28,25 +28,45 @@ while getopts vl:s OPTION
 do
     case ${OPTION} in
     v)
-        OPTS=1
         VERBOSE='true'
         log 'Verbose mode on.'
         ;;
     l)
-        OPTS=2
         LENGTH=${OPTARG}
         ;;
     s)
-        OPTS=3
         USE_SPECIAL_CHARACTER='true'
         ;;
     ?)
-        OPTS=4
         usage
         ;;
     esac
 done
-if [ -z "${OPTS}" ]
+if [[ $# = 0 ]]
+then
+    usage
+fi
+
+# echo "Number of args: $#"
+# echo "All args: $@ "
+# echo "First arg: $1"
+# echo "Second arg: $2"
+# echo "Third arg: $3"
+
+#Inspect OPTIND
+# echo "OPTIND: $OPTIND "
+
+# Remove the options while leaving the remaining arguments.
+shift "$(( OPTIND - 1 ))"
+
+# echo "After the shift:"
+# echo "Number of args: $#"
+# echo "All args: $@ "
+# echo "First arg: $1"
+# echo "Second arg: $2"
+# echo "Third arg: $3"
+
+if [[ $# -gt 0 ]]
 then
     usage
 fi
