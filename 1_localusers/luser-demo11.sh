@@ -57,7 +57,7 @@ fi
 # echo "OPTIND: $OPTIND "
 
 # Remove the options while leaving the remaining arguments.
-shift "$(( OPTIND - 1 ))"
+# shift "$(( OPTIND - 1 ))"
 
 # echo "After the shift:"
 # echo "Number of args: $#"
